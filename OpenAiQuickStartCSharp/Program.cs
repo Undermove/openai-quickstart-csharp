@@ -32,6 +32,7 @@ void LoadConfiguration(WebApplicationBuilder webApplicationBuilder)
     webApplicationBuilder.Configuration.AddJsonFile($"appsettings.{environmentName}.json");
     webApplicationBuilder.Host.ConfigureAppConfiguration((_, config) =>
     {
+        config.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
         config.AddJsonFile($"appsettings.{environmentName}.json", optional: true, reloadOnChange: true);
     });
     webApplicationBuilder.Services.Configure<OpenAiConfig>(

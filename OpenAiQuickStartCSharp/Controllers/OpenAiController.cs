@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace OpenAiQuickStartCSharp;
+namespace OpenAiQuickStartCSharp.Controllers;
 
 [ApiController]
 [Route("[controller]")]

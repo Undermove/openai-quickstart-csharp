@@ -1,4 +1,4 @@
-namespace OpenAiQuickStartCSharp;
+namespace OpenAiQuickStartCSharp.Controllers;
 
 public class AnimalRequestModel
 {

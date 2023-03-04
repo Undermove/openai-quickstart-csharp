@@ -4,9 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Minimal API with Razor page</title>
+    <title>My Page Title</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
 <body>
-<h1>Hello, @Model.Name!</h1>
+<form class="centered-form" method="post">
+    <h1>🐕‍🦺</h1>
+    <label for="my-input">Name my pet</label>
+    <input placeholder="Enter an animal" type="text" id="my-input" name="myInput"/>
+    <button type="submit">Generate names</button>
+</form>
 </body>
 </html>

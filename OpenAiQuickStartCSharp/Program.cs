@@ -1,23 +1,39 @@
 using OpenAiQuickStartCSharp;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 
-const string aspNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
-string? environmentName = Environment.GetEnvironmentVariable(aspNetCoreEnvironment);
-
-builder.Configuration.AddJsonFile($"appsettings.{environmentName}.json");
-
-builder.Host.ConfigureAppConfiguration((_, config) =>
-{
-    config.AddJsonFile($"appsettings.{environmentName}.json", optional: true, reloadOnChange: true);
-});
-
-builder.Services.Configure<OpenAiConfig>(builder.Configuration.GetSection("OpenAiConfig"));
+LoadConfiguration(builder);
 
 var app = builder.Build();
 
-app.MapGet("/", () => "<html>Hello World!</html>");
+app.MapGet("/", async (HttpContext context) =>
+{
+    context.Response.Redirect("/Index");
+});
+app.UseStaticFiles();
+
 app.MapControllers();
 app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+});
+
 app.Run();
+
+void LoadConfiguration(WebApplicationBuilder webApplicationBuilder)
+{
+    const string aspNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
+    string? environmentName = Environment.GetEnvironmentVariable(aspNetCoreEnvironment);
+    webApplicationBuilder.Configuration.AddJsonFile($"appsettings.{environmentName}.json");
+    webApplicationBuilder.Host.ConfigureAppConfiguration((_, config) =>
+    {
+        config.AddJsonFile($"appsettings.{environmentName}.json", optional: true, reloadOnChange: true);
+    });
+    webApplicationBuilder.Services.Configure<OpenAiConfig>(
+        webApplicationBuilder.Configuration.GetSection("OpenAiConfig"));
+}

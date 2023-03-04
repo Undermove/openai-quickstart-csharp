@@ -13,7 +13,7 @@ public class OpenAiController : ControllerBase
     {
         _config = config.Value;
     }
-
+ 
     [HttpPost]
     public async Task<IActionResult> GenerateSuperheroNames([FromBody] AnimalRequestModel request)
     {

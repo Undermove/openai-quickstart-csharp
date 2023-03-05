@@ -9,10 +9,6 @@ LoadConfiguration(builder);
 
 var app = builder.Build();
 
-app.MapGet("/", async (HttpContext context) =>
-{
-    context.Response.Redirect("/Index");
-});
 app.UseStaticFiles();
 
 app.MapControllers();

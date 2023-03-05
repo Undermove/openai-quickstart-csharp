@@ -8,11 +8,39 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
 <body>
-<form class="centered-form" method="post">
+<form id="petNameForm" class="input-form" method="post">
     <h1>🐕‍🦺</h1>
     <label for="my-input">Name my pet</label>
-    <input placeholder="Enter an animal" type="text" id="my-input" name="myInput"/>
+    <input placeholder="Enter an animal" type="text" id="my-input" name="Animal"/>
     <button type="submit">Generate names</button>
 </form>
+<div class="output-block">
+    <span>Suggested Names:</span>
+    <span id="suggestedNames"></span>
+</div>
 </body>
+
+<script>
+    document.getElementById("petNameForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var formData = new FormData(event.target);
+            var jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
+
+            fetch("/OpenAi", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: jsonData
+            })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+            document.getElementById("suggestedNames").innerText = result;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    });
+</script>
 </html>

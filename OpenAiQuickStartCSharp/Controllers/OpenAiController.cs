@@ -51,10 +51,7 @@ public class OpenAiController : ControllerBase
                 temperature: 1
             );
 
-            return Ok(new
-            {
-                result = completion.Completions[0].Text
-            });
+            return Ok(completion.Completions[0].Text);
         }
         catch (Exception error)
         {

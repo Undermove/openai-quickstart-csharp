@@ -13,7 +13,7 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
 3. Generate OpenAi API key [here](https://platform.openai.com/docs/quickstart/add-your-api-key)
 
 4. Paste API key value to appsettings.json file in following section:
-    ```json
+    ```yaml
       "OpenAiConfig": {
         "ApiKey": "<paste your key here>"
       }
@@ -28,14 +28,14 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
 6. Run the app
 
    ```bash
-   bash
    $ dotnet run
    ```
    
 7. Test your app: 
-    Open [app web page http://localhost:5078/](http://localhost:5078/) 
+
+    Open app web page http://localhost:5078/
     
-    Or use curl
+    Or use curl:
     ```bash
     $ curl --location 'http://localhost:5078/OpenAi' --header 'Content-Type: application/json' --data '{ "Animal": "Cat"}'
     ```

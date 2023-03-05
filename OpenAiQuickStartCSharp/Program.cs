@@ -25,7 +25,7 @@ void LoadConfiguration(WebApplicationBuilder webApplicationBuilder)
 {
     const string aspNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
     string? environmentName = Environment.GetEnvironmentVariable(aspNetCoreEnvironment);
-    webApplicationBuilder.Configuration.AddJsonFile($"appsettings.{environmentName}.json");
+    
     webApplicationBuilder.Host.ConfigureAppConfiguration((_, config) =>
     {
         config.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);

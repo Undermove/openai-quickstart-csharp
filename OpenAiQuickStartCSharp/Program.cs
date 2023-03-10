@@ -1,4 +1,4 @@
-using OpenAiQuickStartCSharp;
+using OpenAiQuickStartCSharp.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

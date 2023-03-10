@@ -1,4 +1,4 @@
-namespace OpenAiQuickStartCSharp;
+namespace OpenAiQuickStartCSharp.Configuration;
 
 public class OpenAiConfig
 {
